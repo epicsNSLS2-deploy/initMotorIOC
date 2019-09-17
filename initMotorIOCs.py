@@ -25,7 +25,8 @@ version = "v0.0.1"
 KERNEL_PATH_LIMIT = 127
 
 supported_drivers = [
-    'motorNewFocus'
+    'motorNewFocus',
+    'motorMotorSim'
 ]
 
 class MotorIOCAction:
@@ -371,6 +372,7 @@ class MotorIOCAction:
         old = open(file_path+'_OLD', 'r')
         contents = old.read()
         contents = contents.replace('$(PREFIX)', self.ioc_prefix)
+        contents = contents.replace('$(PORT)', 'P0')
         new = open(file_path, 'w')
         new.write(contents)
         old.close()
